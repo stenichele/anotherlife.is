@@ -1,0 +1,8 @@
+.DS_Store
+.env
+.env.*
+.openai/
+.sites-runtime/
+*.log
+*.zip
+*.tar.gz
