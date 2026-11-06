@@ -1,3 +1,5 @@
-Another Life Research
+# Another Life Research
+
 Website for Another Life Research.
-Public contact address is `anotherlife@agentmail.to`.
+
+Contact address: `anotherlife@agentmail.to`.
