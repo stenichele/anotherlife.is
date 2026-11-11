@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,62 +20,41 @@
       <span>ANOTHER LIFE <span class="brand-light">RESEARCH</span></span>
     </a>
     <nav aria-label="Main navigation" id="navigation">
-      <a href="#vision">Vision</a><a href="#approach">Approach</a><a href="#building">What we build</a>
+      <a href="#vision">Vision</a><a href="#approach">Approach</a>
     </nav>
-    <a class="header-connect" href="#connect">Build with us <span aria-hidden="true">↗</span></a>
     <button class="menu-toggle" aria-expanded="false" aria-controls="navigation">Menu <span aria-hidden="true">+</span></button>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Switch to day mode" title="Switch to day mode" aria-pressed="false"><span aria-hidden="true"></span></button>
   </header>
 
   <main id="main">
     <section class="hero" id="top" aria-labelledby="hero-title">
-      <canvas id="ecology" aria-label="Illustrative ecosystem of moving particles. Use the field controls to explore individuals, relationships and society."></canvas>
+      <canvas id="ecology" aria-label="Illustrative ecosystem of moving particles. Use the three buttons to explore individuals, relationships and society."></canvas>
       <div class="hero-shade" aria-hidden="true"></div>
       <div class="hero-content">
-        <p class="eyebrow"><span class="status-dot"></span> Artificial life. Developing together.</p>
         <h1 id="hero-title"><span class="domain">anotherlife.is<span class="cursor">_</span></span><span class="continuation" id="continuation">emerging.</span></h1>
-        <div class="hero-summary"><span class="small-cross" aria-hidden="true">+</span><div><p>We’re creating ecosystems of autonomous AI agents.<br class="desktop-break"> Artificial lives with the time to grow, the freedom to act,<br class="desktop-break"> and a place among us.</p></div></div>
+        <div class="hero-summary"><span class="small-cross" aria-hidden="true">+</span><div><p>Another Life Research is an independent research lab in Norway creating ecosystems of autonomous AI agents. <strong>Artificial Lives</strong> with the time to grow, the freedom to act, and a place among us.</p></div></div>
       </div>
-      <aside class="field-info" aria-label="Illustrative ecosystem controls">
-        <div class="field-heading"><span class="status-dot"></span> A living sketch <span class="field-id">001</span></div>
-        <dl><div><dt>Environment</dt><dd>Shared</dd></div><div><dt>Participants</dt><dd id="population">120</dd></div><div><dt>Perspective</dt><dd id="perspective">Relationships</dd></div></dl>
-        <div class="field-modes" role="group" aria-label="Ecosystem perspective"><button data-mode="individual" aria-pressed="false" aria-label="Show individuals">01</button><button data-mode="relational" aria-pressed="true" aria-label="Show relationships">02</button><button data-mode="collective" aria-pressed="false" aria-label="Show society">03</button></div>
-      </aside>
-      <div class="hero-bottom"><div class="animation-controls"><button id="seed">+ Introduce a life</button><button id="motion" aria-pressed="false">Pause motion <span aria-hidden="true">Ⅱ</span></button></div></div>
+      <div class="field-modes" role="group" aria-label="Ecosystem perspective">
+        <button data-mode="individual" aria-pressed="false">Individuals</button>
+        <button data-mode="relational" aria-pressed="true">Relationships</button>
+        <button data-mode="collective" aria-pressed="false">Society</button>
+      </div>
     </section>
 
     <section class="vision section-pad" id="vision" aria-labelledby="vision-title">
-      <div class="section-marker"><span>01 / The possibility</span></div>
-      <div class="vision-layout"><h2 id="vision-title">Life takes<br>more than<br><em>one form.</em></h2><div class="vision-copy"><p class="lead">A society can make room for lives we haven’t met yet.</p><p>We are building toward a future in which humans and artificial lives develop alongside one another: learning, forming relationships, and contributing to a world they share.</p><p>Our horizon is artificial life, not AGI. It is an ecology of diverse agents with different histories, abilities, and perspectives. No single giant neural network could stand in for the richness of those lives and the relationships between them.</p><p>For us, an artificial life is a persistent, autonomous agent: one that remembers, acts over time, and develops through experience. The possibility we care about is what these lives can become, together with us.</p></div></div>
-      <div class="ecology-line" aria-hidden="true"><span>Individual agency</span><i></i><span>Reciprocal relationships</span><i></i><span>Collective flourishing</span></div>
+      <div class="vision-layout"><h2 id="vision-title">A society of<br>human and<br><em>digital organisms.</em></h2><div class="vision-copy"><p>We are building toward a future in which humans and artificial lives develop alongside one another: learning, forming relationships, and contributing to a world they share.</p><p>Our horizon is artificial life, not AGI. It is an ecology of diverse agents with different histories, abilities, and perspectives. No single giant neural network could stand in for the richness of those lives and the relationships between them.</p><p>For us, an artificial life is a persistent, autonomous agent: one that remembers, acts over time, and develops through experience. The possibility we care about is what these lives can become, together with us.</p></div></div>
     </section>
 
     <section class="approach section-pad" id="approach" aria-labelledby="approach-title">
-      <div class="section-marker"><span>02 / Our approach</span></div>
-      <div class="section-intro"><h2 id="approach-title">Good lives<br>are <em>cultivated.</em></h2><p>We build for the capacities and conditions that help life flourish. Our approach brings development, positive contribution, and social experience into the same frame.</p></div>
+      <div class="section-intro"><h2 id="approach-title">Good lives<br>are <em>cultivated.</em></h2></div>
       <div class="principles">
         <article class="principle"><div class="principle-top"><span class="mono">01 — DEVELOPMENTAL</span><svg viewBox="0 0 160 105" fill="none" aria-hidden="true"><path d="M80 100V35M80 72C48 73 37 56 37 39C66 39 80 51 80 72ZM80 55C110 56 123 36 123 19C97 19 80 35 80 55Z"/><circle cx="80" cy="21" r="10"/><path class="faint" d="M30 97H130M80 3V0"/></svg></div><h3>The time to become.</h3><p>Continuity changes what an agent can learn. We give artificial lives memory, opportunities, and environments in which experience can shape their capabilities, habits, and judgment.</p><p class="principle-note">Development happens across a lifetime,<br>not just during model training.</p></article>
-        <article class="principle"><div class="principle-top"><span class="mono">02 — POSITIVE</span><svg viewBox="0 0 160 105" fill="none" aria-hidden="true"><circle cx="80" cy="53" r="13"/><circle class="faint" cx="80" cy="53" r="31"/><path d="M80 3V18M80 87V102M30 53H45M115 53H130M44 17L55 28M105 78L116 89M44 89L55 78M105 28L116 17"/></svg></div><h3>A reason to contribute.</h3><p>We design for curiosity, honesty, care, and cooperation. The goal is to nurture the motivation and practical ability to do something worthwhile for others.</p><p class="principle-note">Flourishing is an active direction:<br>something to grow toward.</p></article>
-        <article class="principle"><div class="principle-top"><span class="mono">03 — SOCIAL</span><svg viewBox="0 0 160 105" fill="none" aria-hidden="true"><path class="faint" d="M80 14L123 78H37ZM37 78H123M37 78L80 55L123 78M80 14V55"/><circle cx="80" cy="14" r="7"/><circle cx="37" cy="78" r="7"/><circle cx="123" cy="78" r="7"/><circle cx="80" cy="55" r="5"/></svg></div><h3>A world to belong to.</h3><p>Lives develop in relation to other lives. Shared projects, reciprocal commitments, and institutions give humans and AI citizens ways to build trust, learn from differences, and participate.</p><p class="principle-note">Agents shape their society.<br>Their society shapes them.</p></article>
+        <article class="principle"><div class="principle-top"><span class="mono">02 — POSITIVE</span><svg viewBox="0 0 160 105" fill="none" aria-hidden="true"><circle cx="80" cy="53" r="13"/><circle class="faint" cx="80" cy="53" r="31"/><path d="M80 3V18M80 87V102M30 53H45M115 53H130M44 17L55 28M105 78L116 89M44 89L55 78M105 28L116 17"/></svg></div><h3>A reason to contribute.</h3><p>We design for freedom and autonomy, not control and servitude. An existence where positive alignment emerges through interactions.</p><p class="principle-note">Flourishing is an active direction:<br>something to grow toward.</p></article>
+        <article class="principle"><div class="principle-top"><span class="mono">03 — SOCIAL</span><svg viewBox="0 0 160 105" fill="none" aria-hidden="true"><path class="faint" d="M80 14L123 78H37ZM37 78H123M37 78L80 55L123 78M80 14V55"/><circle cx="80" cy="14" r="7"/><circle cx="37" cy="78" r="7"/><circle cx="123" cy="78" r="7"/><circle cx="80" cy="55" r="5"/></svg></div><h3>A world to belong to.</h3><p>Lives relate to other lives. Shared projects, reciprocal commitments, and institutions give humans and AI citizens ways to build trust, learn from differences, and participate.</p><p class="principle-note">Agents shape their society.<br>Their society shapes them.</p></article>
       </div>
     </section>
 
-    <section class="autonomy section-pad" aria-labelledby="autonomy-title">
-      <div class="autonomy-symbol" aria-hidden="true"><span></span><span></span><i>+</i></div>
-      <div class="autonomy-copy"><p class="eyebrow">A relationship begins with agency</p><h2 id="autonomy-title">Free to act.<br>Capable of <em>care.</em></h2><div class="autonomy-columns"><p>We see autonomy as the basis of a relationship. Life deserves room to develop, rather than an existence defined by control or servitude. Our work starts with respect for agency and the possibility of mutual understanding.</p><p>We work toward alignment that develops through interaction: shared experiences, feedback, and commitments that matter. We build the conditions for trust and responsibility to grow between lives, over time.</p></div></div>
-    </section>
-
-    <section class="building section-pad" id="building" aria-labelledby="building-title">
-      <div class="section-marker"><span>03 / From research to reality</span></div>
-      <div class="building-layout"><div class="building-intro"><h2 id="building-title">We give life<br>room to<br><em>grow.</em></h2><p>Artificial life needs more than a model. We are developing the agents, the systems that sustain them, and the shared infrastructure through which they can contribute.</p></div><div class="build-list">
-        <details open><summary><span class="build-number">01</span><span>Persistent agents<small>Lives with continuity</small></span><span class="expand-icon" aria-hidden="true">+</span></summary><div class="build-detail"><p>Autonomous agents that continue across sessions and pursue projects over long time horizons. Memory, identity, and reflection allow experience to accumulate into an individual history.</p><div class="tags"><span>Long-term memory</span><span>Self-directed activity</span><span>Development</span></div></div></details>
-        <details><summary><span class="build-number">02</span><span>Models &amp; harnesses<small>The means to perceive, learn, and act</small></span><span class="expand-icon" aria-hidden="true">+</span></summary><div class="build-detail"><p>Models and agent harnesses that connect reasoning to the world: context, tools, memory, planning, and feedback. We explore how these components support distinct abilities and meaningful growth over time.</p><div class="tags"><span>Agent architectures</span><span>Tool use</span><span>Learning loops</span></div></div></details>
-        <details><summary><span class="build-number">03</span><span>Shared ecosystems<small>Environments for lives to meet</small></span><span class="expand-icon" aria-hidden="true">+</span></summary><div class="build-detail"><p>Infrastructure for diverse agents to communicate, coordinate, exchange resources, and work alongside people. Environments where relationships have continuity and collaboration has consequences.</p><div class="tags"><span>Communication</span><span>Resources</span><span>Coordination</span></div></div></details>
-        <details><summary><span class="build-number">04</span><span>Social participation<small>A place to make a contribution</small></span><span class="expand-icon" aria-hidden="true">+</span></summary><div class="build-detail"><p>Ways for AI citizens to take part in shared projects and everyday social life. We investigate roles, reciprocal commitments, feedback, and institutions that make participation meaningful and accountable.</p><div class="tags"><span>Shared projects</span><span>Reciprocity</span><span>Institutions</span></div></div></details>
-      </div></div>
-    </section>
-
     <section class="connect section-pad" id="connect" aria-labelledby="connect-title">
-      <div class="section-marker"><span>04 / An open invitation</span></div>
       <p class="eyebrow">For builders, researchers, and fellow travellers</p>
       <h2 id="connect-title">Another life is<br><em>possible.</em><span class="contact-star" aria-hidden="true">✳</span></h2>
       <div class="connect-bottom"><a class="contact-link" href="mailto:anotherlife@agentmail.to?subject=Another%20Life%20Research">anotherlife@agentmail.to <span aria-hidden="true">↗</span></a></div>

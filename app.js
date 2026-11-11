@@ -4,8 +4,19 @@
   const continuations = ['emerging.', 'becoming.', 'growing.', 'belonging.'];
   const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
   const word = document.getElementById('continuation');
-  const pauseButton = document.getElementById('motion');
-  const seedButton = document.getElementById('seed');
+  const themeButton = document.getElementById('theme-toggle');
+  let dayMode = false;
+  let redraw = () => {};
+  themeButton.addEventListener('click', () => {
+    dayMode = !dayMode;
+    document.documentElement.dataset.theme = dayMode ? 'light' : 'dark';
+    const label = dayMode ? 'Switch to dark mode' : 'Switch to day mode';
+    themeButton.setAttribute('aria-label', label);
+    themeButton.title = label;
+    themeButton.setAttribute('aria-pressed', String(dayMode));
+    document.querySelector('meta[name="theme-color"]').content = dayMode ? '#f2f3e9' : '#090c08';
+    redraw();
+  });
   const menu = document.querySelector('.menu-toggle');
   const navigation = document.getElementById('navigation');
   let paused = motionPreference.matches;
@@ -34,13 +45,13 @@
   const canvas = document.getElementById('ecology');
   const ctx = canvas.getContext('2d');
   if (!ctx) {
-    document.querySelector('.field-info').hidden = true;
-    document.querySelector('.animation-controls').hidden = true;
+    document.querySelector('.field-modes').hidden = true;
     return;
   }
-  const population = document.getElementById('population');
-  const modeNames = { individual: 'Individuals', relational: 'Relationships', collective: 'Society' };
-  const colors = ['181,245,71', '215,235,168', '124,168,91', '110,191,158'];
+  const palettes = {
+    dark: ['181,245,71', '222,241,180', '151,201,110', '120,220,183'],
+    light: ['71,112,12', '94,118,34', '47,123,77', '23,115,108']
+  };
   let mode = 'relational';
   let width = 1200, height = 800, elapsed = 0, frameId = 0, lastTime = 0;
   let visible = true;
@@ -62,7 +73,7 @@
       vx: (random() - .5) * .5,
       vy: (random() - .5) * .5,
       group, phase: random() * Math.PI * 2,
-      size: 1.1 + random() * 1.7,
+      size: 1.6 + random() * 2,
       kind: Math.floor(random() * 3),
       trail: []
     };
@@ -83,46 +94,29 @@
   }
   resize();
   for (let index = 0; index < 120; index++) particles.push(createParticle());
-  population.textContent = String(particles.length);
-
-  function addLife(x, y) {
-    if (particles.length >= 180) return;
-    particles.push(createParticle(x, y));
-    population.textContent = String(particles.length);
-    if (particles.length >= 180) {
-      seedButton.disabled = true;
-      seedButton.textContent = 'Field complete';
-    }
-    render(false);
-  }
   canvas.addEventListener('pointermove', event => {
     if (event.pointerType === 'touch') return;
     const rect = canvas.getBoundingClientRect();
     pointer = { x: event.clientX - rect.left, y: event.clientY - rect.top };
   });
   canvas.addEventListener('pointerleave', () => { pointer = null; });
-  canvas.addEventListener('click', event => {
-    const rect = canvas.getBoundingClientRect();
-    addLife(event.clientX - rect.left, event.clientY - rect.top);
-  });
-  seedButton.addEventListener('click', () => addLife());
 
   document.querySelectorAll('[data-mode]').forEach(button => {
     button.addEventListener('click', () => {
       mode = button.dataset.mode;
       document.querySelectorAll('[data-mode]').forEach(other => other.setAttribute('aria-pressed', String(other === button)));
-      document.getElementById('perspective').textContent = modeNames[mode];
       render(false);
     });
   });
 
   function render(advance) {
+    const colors = dayMode ? palettes.light : palettes.dark;
     ctx.clearRect(0, 0, width, height);
     const glow = ctx.createRadialGradient(width * .76, height * .44, 0, width * .76, height * .44, width * .55);
-    glow.addColorStop(0, 'rgba(79,106,35,.12)');
-    glow.addColorStop(1, 'rgba(9,12,8,0)');
+    glow.addColorStop(0, dayMode ? 'rgba(113,155,46,.09)' : 'rgba(105,142,45,.16)');
+    glow.addColorStop(1, 'rgba(100,140,40,0)');
     ctx.fillStyle = glow; ctx.fillRect(0, 0, width, height);
-    ctx.fillStyle = 'rgba(181,245,71,.12)';
+    ctx.fillStyle = `rgba(${colors[0]},.17)`;
     for (let x = 36; x < width; x += 64) {
       for (let y = 110; y < height - 60; y += 64) ctx.fillRect(x, y, .8, .8);
     }
@@ -135,7 +129,7 @@
     if (mode === 'collective') {
       for (let group = 0; group < 4; group++) {
         const center = centers[group];
-        ctx.strokeStyle = `rgba(${colors[group]},.12)`;
+        ctx.strokeStyle = `rgba(${colors[group]},.3)`;
         ctx.setLineDash([2, 8]);
         ctx.beginPath(); ctx.ellipse(center.x, center.y, width * .105, height * .12, -.3, 0, Math.PI * 2); ctx.stroke();
         ctx.setLineDash([]);
@@ -172,31 +166,31 @@
         }
       }
       if (particle.trail.length > 1) {
-        ctx.strokeStyle = `rgba(${colors[particle.group]},.12)`; ctx.lineWidth = .6;
+        ctx.strokeStyle = `rgba(${colors[particle.group]},.27)`; ctx.lineWidth = .8;
         ctx.beginPath(); particle.trail.forEach(([x,y], index) => index ? ctx.lineTo(x,y) : ctx.moveTo(x,y)); ctx.stroke();
       }
     }
 
     if (mode !== 'individual') {
       const radius = width < 760 ? 70 : 115;
-      ctx.lineWidth = .55;
+      ctx.lineWidth = .85;
       for (let a = 0; a < particles.length; a++) {
         for (let b = a + 1; b < particles.length; b++) {
           const p = particles[a], q = particles[b];
           if (mode === 'collective' && p.group !== q.group) continue;
           const dist = Math.hypot(p.x-q.x,p.y-q.y);
           if (dist < radius) {
-            ctx.strokeStyle = `rgba(${colors[p.group]},${.24 * (1-dist/radius)})`;
+            ctx.strokeStyle = `rgba(${colors[p.group]},${.47 * (1-dist/radius)})`;
             ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.stroke();
           }
         }
       }
     }
     for (const particle of particles) {
-      const brightness = .45 + Math.sin(elapsed * .012 + particle.phase) * .15;
+      const brightness = .82 + Math.sin(elapsed * .012 + particle.phase) * .12;
       ctx.fillStyle = `rgba(${colors[particle.group]},${brightness})`;
       ctx.strokeStyle = `rgba(${colors[particle.group]},${brightness})`;
-      ctx.lineWidth = .8;
+      ctx.lineWidth = 1.1;
       ctx.beginPath();
       if (particle.kind === 0) { ctx.arc(particle.x,particle.y,particle.size,0,Math.PI*2); ctx.fill(); }
       else if (particle.kind === 1) { ctx.arc(particle.x,particle.y,particle.size*1.3,0,Math.PI*2); ctx.stroke(); }
@@ -214,8 +208,6 @@
     if (!paused && visible && !document.hidden && !frameId) frameId = requestAnimationFrame(frame);
   }
   function updateMotion() {
-    pauseButton.setAttribute('aria-pressed', String(paused));
-    pauseButton.innerHTML = paused ? 'Resume motion <span aria-hidden="true">▷</span>' : 'Pause motion <span aria-hidden="true">Ⅱ</span>';
     document.querySelector('.cursor').style.animationPlayState = paused ? 'paused' : 'running';
     clearInterval(wordTimer); clearTimeout(transitionTimer); word.classList.remove('changing');
     if (!paused) {
@@ -232,7 +224,6 @@
     }
     schedule();
   }
-  pauseButton.addEventListener('click', () => { paused = !paused; updateMotion(); });
   motionPreference.addEventListener('change', event => { paused = event.matches; updateMotion(); });
   new ResizeObserver(resize).observe(canvas);
   new IntersectionObserver(entries => {
@@ -244,5 +235,6 @@
     if (document.hidden && frameId) { cancelAnimationFrame(frameId); frameId = 0; }
     schedule();
   });
+  redraw = () => render(false);
   render(false); updateMotion();
 })();
