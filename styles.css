@@ -73,6 +73,7 @@ svg { display: block; }
 .field-modes button { font-size: 10px; border: 1px solid var(--line); min-height: 40px; padding: 11px 15px; background: rgba(var(--bg-rgb),.85); transition: background .2s,color .2s; }
 .field-modes button[aria-pressed="true"],.field-modes button:hover { color: var(--bg); background: var(--accent); border-color: var(--accent); }
 .section-pad { padding: 90px 8% 100px; }
+main > section + section { border-top: 1px solid var(--line); }
 .vision { padding-top: 55px; }
 .vision-layout { display: grid; grid-template-columns: 1.1fr 1fr; gap: 10%; }
 .vision h2 { font-size: clamp(48px,5.4vw,80px); }
