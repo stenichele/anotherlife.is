@@ -97,10 +97,14 @@ main > section + section { border-top: 1px solid var(--line); }
 .connect { padding-top: 90px; padding-bottom: 80px; }
 .connect h2 { font-size: clamp(70px,9.8vw,145px); margin-top: 25px; position: relative; letter-spacing: -.06em; }
 .contact-mark { position: absolute; right: 5%; top: 30px; width: 190px; height: auto; color: var(--accent); }
-.connect-bottom { margin-top: 55px; display: flex; }
+.connect-bottom { margin-top: 55px; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
 .contact-link { display: flex; align-items: center; gap: 60px; padding-bottom: 17px; border-bottom: 1px solid var(--accent); font-size: 20px; letter-spacing: -.025em; }
 .contact-link>span { color: var(--accent); font-size: 27px; }
 .contact-link:hover { color: var(--accent); }
+.social-links { display: flex; flex-wrap: wrap; gap: 28px; }
+.social-links a { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; font-family: var(--mono); font-size: 12px; color: var(--soft); border-bottom: 1px solid var(--line); }
+.social-links a>span { color: var(--accent); }
+.social-links a:hover { color: var(--accent); border-color: var(--accent); }
 footer { margin: 0 5%; border-top: 1px solid var(--line); padding: 25px 0 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px; color: var(--muted); font-size: 9px; }
 footer>a:hover { color: var(--accent); }
 .footer-domain { font-size: 21px; letter-spacing: -.06em; color: var(--ink); }
